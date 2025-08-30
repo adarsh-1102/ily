@@ -407,40 +407,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    continueBtn.addEventListener('click', function() {
-        interactiveSection.classList.add('hidden');
-        finalContainer.style.display = 'flex';
-        finalPhotoContainer.style.display = 'block';
-        playMusic();
-        createHearts();
+ continueBtn.addEventListener('click', function() {
+    interactiveSection.classList.add('hidden');
+    finalContainer.style.display = 'flex';
+    finalPhotoContainer.style.display = 'block';
+    playMusic();
+    createHearts();
 
-        const finalParagraphs = [
-            "Heyy...this is Adarsh orr your Gadha and whatsoever....",
-            "I know this is kinda out of the blue...but I think it's now or never....",
-            "I think this is the time....",
-            "I love you Smriti....",
-            "I can't hold it anymore and also I don't wanna keep any regrets...",
-            "Let me know your response on whatsapp"
-        ];
+    const finalParagraphs = [
+        "Heyy...this is Adarsh orr your Gadha and whatsoever....",
+        "I know this is kinda out of the blue...but I think it's now or never....",
+        "I think this is the time....",
+        "I love you Smriti....",
+        "I can't hold it anymore and also I don't wanna keep any regrets...",
+        "Let me know your response on whatsapp"
+    ];
 
-        let idx = 0;
+    let idx = 0;
 
-        function typeNext() {
-            if (idx < finalParagraphs.length) {
-                const p = document.createElement('p');
-                finalMessage.insertBefore(p, loveMessage);
-                typeWriter(finalParagraphs[idx], p, 80, () => {
-                    idx++;
-                    typeNext();
-                });
-            } else {
-                // type the loveMessage separately with cursor
-                typeWriter(finalParagraphs[3], loveMessage, 120);
-            }
+    function typeNext() {
+        if (idx < finalParagraphs.length) {
+            const p = document.createElement('p');
+            finalContainer.appendChild(p);  // append to finalContainer instead of loveMessage
+            typeWriter(finalParagraphs[idx], p, 80, () => {
+                idx++;
+                typeNext();
+            });
         }
+    }
 
-        typeNext();
-    });
+    typeNext();
+});
+
 
     // Music control
     let musicPlaying = true;
