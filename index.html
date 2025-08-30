@@ -349,6 +349,22 @@ document.addEventListener('DOMContentLoaded', function() {
         type();
     }
 
+    // Typewriter for HTML content
+    function typeWriterHTML(htmlText, element, speed = 50, callback) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+            if (i < htmlText.length) {
+                element.innerHTML += htmlText.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        type();
+    }
+
     // Play music immediately
     function playMusic() {
         bgMusic.volume = 0.7;
@@ -437,11 +453,18 @@ document.addEventListener('DOMContentLoaded', function() {
         function typeNext() {
             if (idx < finalParagraphs.length) {
                 const p = document.createElement('p');
-                finalTextContainer.appendChild(p);  // append to text container only
-                typeWriter(finalParagraphs[idx], p, 80, () => {
-                    idx++;
-                    typeNext();
-                });
+                finalTextContainer.appendChild(p);
+                if (finalParagraphs[idx].includes('<span')) {
+                    typeWriterHTML(finalParagraphs[idx], p, 80, () => {
+                        idx++;
+                        typeNext();
+                    });
+                } else {
+                    typeWriter(finalParagraphs[idx], p, 80, () => {
+                        idx++;
+                        typeNext();
+                    });
+                }
             }
         }
 
