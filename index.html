@@ -316,172 +316,156 @@
     </audio>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const startBtn = document.getElementById('startBtn');
-            const memoryBtn = document.getElementById('memoryBtn');
-            const laughBtn = document.getElementById('laughBtn');
-            const continueBtn = document.getElementById('continueBtn');
-            const introMessage = document.getElementById('introMessage');
-            const progressContainer = document.getElementById('progressContainer');
-            const progressBar = document.getElementById('progressBar');
-            const interactiveSection = document.getElementById('interactiveSection');
-            const finalContainer = document.getElementById('finalContainer');
-            const finalPhotoContainer = document.getElementById('finalPhotoContainer');
-            const memoryMessage = document.getElementById('memoryMessage');
-            const laughMessage = document.getElementById('laughMessage');
-            const loveMessage = document.getElementById('loveMessage');
-            const heartsContainer = document.getElementById('heartsContainer');
-            const musicControl = document.getElementById('musicControl');
-            const bgMusic = document.getElementById('bgMusic');
-            
-            // Typewriter function
-            function typeWriter(text, element, speed = 100) {
-                let i = 0;
-                element.innerHTML = '';
-                
-                function type() {
-                    if (i < text.length) {
-                        element.innerHTML += text.charAt(i);
-                        i++;
-                        setTimeout(type, speed);
-                    } else {
-                        // Add blinking cursor after text is complete
-                        const cursor = document.createElement('span');
-                        cursor.classList.add('cursor');
-                        element.appendChild(cursor);
-                        
-                        // Remove cursor after 2 seconds
-                        setTimeout(() => {
-                            cursor.remove();
-                        }, 2000);
-                    }
-                }
-                
-                type();
+document.addEventListener('DOMContentLoaded', function() {
+    const startBtn = document.getElementById('startBtn');
+    const memoryBtn = document.getElementById('memoryBtn');
+    const laughBtn = document.getElementById('laughBtn');
+    const continueBtn = document.getElementById('continueBtn');
+    const introMessage = document.getElementById('introMessage');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressBar = document.getElementById('progressBar');
+    const interactiveSection = document.getElementById('interactiveSection');
+    const finalContainer = document.getElementById('finalContainer');
+    const finalPhotoContainer = document.getElementById('finalPhotoContainer');
+    const memoryMessage = document.getElementById('memoryMessage');
+    const laughMessage = document.getElementById('laughMessage');
+    const loveMessage = document.getElementById('loveMessage');
+    const heartsContainer = document.getElementById('heartsContainer');
+    const musicControl = document.getElementById('musicControl');
+    const bgMusic = document.getElementById('bgMusic');
+
+    // Typewriter function
+    function typeWriter(text, element, speed = 50, callback) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
             }
-            
-            // Play music function
-            function playMusic() {
-                bgMusic.play().then(() => {
-                    bgMusic.volume = 0.7;
-                    musicControl.classList.remove('hidden');
-                }).catch(error => {
-                    console.log('Audio play failed:', error);
-                    // Show music control anyway for user interaction
-                    musicControl.classList.remove('hidden');
-                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
-                });
-            }
-            
-            // Create floating hearts
-            function createHearts() {
-                setInterval(() => {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart-shape');
-                    heart.innerHTML = '❤';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
-                    heartsContainer.appendChild(heart);
-                    
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 6000);
-                }, 300);
-            }
-            
-            startBtn.addEventListener('click', function() {
-                // Fade in the intro message
-                introMessage.style.opacity = 1;
-                introMessage.style.transform = 'translateY(0)';
-                
-                // Hide start button and show progress container
-                startBtn.classList.add('hidden');
-                progressContainer.classList.remove('hidden');
-                
-                // Animate progress bar
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 100) {
-                        clearInterval(interval);
-                        showInteractiveSection();
-                    } else {
-                        width++;
-                        progressBar.style.width = width + '%';
-                    }
-                }, 30);
-            });
-            
-            function showInteractiveSection() {
-                progressContainer.classList.add('hidden');
-                interactiveSection.classList.remove('hidden');
-                createHearts();
-            }
-            
-            memoryBtn.addEventListener('click', function() {
-                memoryMessage.style.display = 'block';
-                this.classList.add('clicked');
-                this.style.opacity = '0.7';
-                checkButtonsClicked();
-            });
-            
-            laughBtn.addEventListener('click', function() {
-                laughMessage.style.display = 'block';
-                this.classList.add('clicked');
-                this.style.opacity = '0.7';
-                checkButtonsClicked();
-            });
-            
-            function checkButtonsClicked() {
-                if (memoryBtn.classList.contains('clicked') && laughBtn.classList.contains('clicked')) {
-                    continueBtn.classList.remove('hidden');
-                }
-            }
-            
-            continueBtn.addEventListener('click', function() {
-                interactiveSection.classList.add('hidden');
-                finalContainer.style.display = 'flex';
-                finalPhotoContainer.style.display = 'block';
-                
-                // Typewriter effect for the love message
-                setTimeout(() => {
-                    typeWriter('I love you Smriti....', loveMessage, 120);
-                }, 1000);
-                
-                // Play music when the final message appears
-                setTimeout(() => {
-                    playMusic();
-                }, 1500);
-                
-                // Create more hearts for the finale
-                for (let i = 0; i < 30; i++) {
-                    setTimeout(() => {
-                        const heart = document.createElement('div');
-                        heart.classList.add('heart-shape');
-                        heart.innerHTML = '❤';
-                        heart.style.left = Math.random() * 100 + '%';
-                        heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
-                        heartsContainer.appendChild(heart);
-                        
-                        setTimeout(() => {
-                            heart.remove();
-                        }, 6000);
-                    }, i * 100);
-                }
-            });
-            
-            // Music control
-            let musicPlaying = true;
-            musicControl.addEventListener('click', function() {
-                if (musicPlaying) {
-                    bgMusic.pause();
-                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
-                } else {
-                    bgMusic.play();
-                    musicControl.innerHTML = '<i class="fas fa-pause"></i>';
-                }
-                musicPlaying = !musicPlaying;
-            });
+        }
+        type();
+    }
+
+    // Play music immediately
+    function playMusic() {
+        bgMusic.volume = 0.7;
+        bgMusic.play().catch(err => {
+            console.log('Music play failed:', err);
         });
-    </script>
+        musicControl.classList.remove('hidden');
+        musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+    }
+
+    // Floating hearts
+    function createHearts() {
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-shape');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 300);
+    }
+
+    startBtn.addEventListener('click', function() {
+        introMessage.style.opacity = 1;
+        introMessage.style.transform = 'translateY(0)';
+        startBtn.classList.add('hidden');
+        progressContainer.classList.remove('hidden');
+
+        let width = 0;
+        const interval = setInterval(() => {
+            if (width >= 100) {
+                clearInterval(interval);
+                showInteractiveSection();
+            } else {
+                width++;
+                progressBar.style.width = width + '%';
+            }
+        }, 30);
+    });
+
+    function showInteractiveSection() {
+        progressContainer.classList.add('hidden');
+        interactiveSection.classList.remove('hidden');
+        createHearts();
+    }
+
+    memoryBtn.addEventListener('click', function() {
+        memoryMessage.style.display = 'block';
+        this.classList.add('clicked');
+        this.style.opacity = '0.7';
+        checkButtonsClicked();
+    });
+
+    laughBtn.addEventListener('click', function() {
+        laughMessage.style.display = 'block';
+        this.classList.add('clicked');
+        this.style.opacity = '0.7';
+        checkButtonsClicked();
+    });
+
+    function checkButtonsClicked() {
+        if (memoryBtn.classList.contains('clicked') && laughBtn.classList.contains('clicked')) {
+            continueBtn.classList.remove('hidden');
+        }
+    }
+
+    continueBtn.addEventListener('click', function() {
+        interactiveSection.classList.add('hidden');
+        finalContainer.style.display = 'flex';
+        finalPhotoContainer.style.display = 'block';
+        playMusic();
+        createHearts();
+
+        const finalParagraphs = [
+            "Heyy...this is Adarsh orr your Gadha and whatsoever....",
+            "I know this is kinda out of the blue...but I think it's now or never....",
+            "I think this is the time....",
+            "I love you Smriti....",
+            "I can't hold it anymore and also I don't wanna keep any regrets...",
+            "Let me know your response on whatsapp"
+        ];
+
+        let idx = 0;
+
+        function typeNext() {
+            if (idx < finalParagraphs.length) {
+                const p = document.createElement('p');
+                finalMessage.insertBefore(p, loveMessage);
+                typeWriter(finalParagraphs[idx], p, 80, () => {
+                    idx++;
+                    typeNext();
+                });
+            } else {
+                // type the loveMessage separately with cursor
+                typeWriter(finalParagraphs[3], loveMessage, 120);
+            }
+        }
+
+        typeNext();
+    });
+
+    // Music control
+    let musicPlaying = true;
+    musicControl.addEventListener('click', function() {
+        if (musicPlaying) {
+            bgMusic.pause();
+            musicControl.innerHTML = '<i class="fas fa-play"></i>';
+        } else {
+            bgMusic.play();
+            musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+        musicPlaying = !musicPlaying;
+    });
+});
+</script>
+
 </body>
 </html>
