@@ -1,358 +1,487 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>for Smriti ✨</title>
-  <style>
-    :root{
-      --bg:#0b0f14; --fg:#eaf2ff; --muted:#9fb3c8; --accent:#ff4d7a; --glow:#84d0ff;
-      --card:#10151d; --card-2:#0e141b; --ok:#10b981;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; background:radial-gradient(1200px 800px at 70% -10%, #162035 2%, transparent 60%), var(--bg);
-      color:var(--fg); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      overflow:hidden;
-    }
-    .stars,.hearts{position:fixed; inset:0; z-index:-2}
-    .hearts{z-index:-1; pointer-events:none}
-
-    .corner-toggle{
-      position:fixed; top:16px; right:16px; z-index:10; width:46px; height:46px;
-      border-radius:999px; background:var(--card); border:1px solid #1f2937; display:grid; place-items:center; cursor:pointer;
-      box-shadow:0 8px 24px rgb(0 0 0 / .25), inset 0 0 0 1px rgb(255 255 255 / .02);
-      transition:.2s transform ease;
-    }
-    .corner-toggle:hover{transform:translateY(-2px)}
-    .corner-toggle svg{width:22px; height:22px; fill:var(--fg)}
-
-    .wrap{position:fixed; inset:0; display:grid; place-items:center; padding:24px}
-    .card{
-      width:min(920px, 95vw); min-height:360px; background:linear-gradient(180deg, rgba(255,255,255,.05), transparent 28%), var(--card);
-      border:1px solid #1f2937; border-radius:24px; padding:26px; box-shadow:0 12px 40px rgb(0 0 0 / .35);
-    }
-    .title{font-size:clamp(22px, 3vw, 36px); letter-spacing:.3px; line-height:1.2; margin:0 0 10px}
-    .muted{color:var(--muted); font-size:clamp(12px, 1.7vw, 15px)}
-    .center{display:flex; align-items:center; justify-content:center; gap:12px; margin-top:18px}
-    .btn{
-      appearance:none; border:0; padding:14px 18px; border-radius:14px; font-weight:700; cursor:pointer;
-      background:linear-gradient(180deg, #1f2937, #111827); color:var(--fg);
-      border:1px solid #303b4a; box-shadow:0 10px 30px rgb(0 0 0 / .35), inset 0 0 0 1px rgb(255 255 255 / .03);
-      transition:transform .15s ease, box-shadow .2s ease, background .2s ease; letter-spacing:.2px
-    }
-    .btn:hover{transform:translateY(-2px); box-shadow:0 16px 40px rgb(0 0 0 / .45), 0 0 32px -8px var(--glow)}
-    .btn.primary{background:linear-gradient(180deg, #2d3748, #111827)}
-    .btn.ghost{background:transparent; border:1px dashed #334155; opacity:.9}
-
-    /* stepper */
-    .step{display:none}
-    .step.active{display:block}
-
-    .progress{
-      margin:20px 0 8px; height:12px; background:#0b1220; border:1px solid #1f2937; border-radius:999px; overflow:hidden
-    }
-    .progress > i{display:block; height:100%; width:0%; background:linear-gradient(90deg, var(--accent), #ff7ea3); box-shadow:0 0 16px 4px rgba(255,77,122,.45) inset; transition:width .35s ease}
-
-    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0e1626; border:1px solid #1f2937; color:var(--muted); font-size:12px}
-
-    .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; margin-top:16px}
-    .option{
-      padding:14px; border-radius:16px; background:linear-gradient(180deg, rgba(255,255,255,.04), transparent 40%), var(--card-2);
-      border:1px solid #1f2937; cursor:pointer; transition:.2s transform ease, box-shadow .2s ease, border-color .2s ease
-    }
-    .option:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgb(0 0 0 / .35); border-color:#334155}
-
-    .hold-btn{position:relative; overflow:hidden}
-    .hold-fill{position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,77,122,.25)); width:0%; transition:width .05s linear; pointer-events:none}
-
-    .tiny{font-size:12px; color:var(--muted)}
-
-    .final{
-      text-align:center; padding:12px; line-height:1.5
-    }
-    .typewriter{display:inline-block; border-right:2px solid var(--fg); white-space:pre-wrap; overflow:hidden}
-
-    /* phone optimizations */
-    @media (max-width:520px){
-      .card{border-radius:18px; padding:18px}
-      .grid{grid-template-columns:1fr}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Special Someone</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            color: #ff6b6b;
+            margin-bottom: 15px;
+            font-size: 32px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .photo-container {
+            width: 280px;
+            height: 280px;
+            margin: 20px auto;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.5s;
+            display: none;
+            border: 5px solid #ff6b6b;
+        }
+        
+        .photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+            margin-bottom: 20px;
+            text-align: left;
+            line-height: 1.6;
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+        }
+        
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            margin: 15px 5px;
+            outline: none;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+        
+        button:hover {
+            background: #ff4f4f;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .final-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            display: none;
+        }
+        
+        .final-message {
+            background: #fff;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #ff6b6b;
+            text-align: left;
+            flex: 1;
+        }
+        
+        .memory-container {
+            display: none;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            border-left: 4px solid #ff6b6b;
+        }
+        
+        .hearts-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart-shape {
+            position: absolute;
+            font-size: 22px;
+            color: #ff6b6b;
+            opacity: 0;
+            animation: float 6s linear forwards;
+            z-index: -1;
+        }
+        
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+        
+        .progress-container {
+            height: 8px;
+            width: 100%;
+            background: #f1f1f1;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            transition: width 0.5s;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 0.15em;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        .love-line {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 22px;
+            margin: 15px 0;
+            min-height: 32px;
+        }
+        
+        @media (max-width: 768px) {
+            .final-container {
+                flex-direction: column;
+            }
+            
+            .photo-container {
+                width: 200px;
+                height: 200px;
+            }
+        }
+        
+        .cursor {
+            display: inline-block;
+            background-color: #ff6b6b;
+            margin-left: 2px;
+            width: 3px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Background canvas layers -->
-  <canvas class="stars"></canvas>
-  <canvas class="hearts"></canvas>
-
-  <!-- Dark/Light toggle -->
-  <button class="corner-toggle" id="modeToggle" aria-label="Toggle theme" title="Toggle theme">
-    <svg id="sunIcon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.8 1.42-1.42zm10.48 0l1.8-1.79 1.41 1.41-1.79 1.8-1.42-1.42zM12 4V1h-0v3h0zm0 19v-3h0v3h0zM4 12H1v0h3v0zm19 0h-3v0h3v0zM6.76 19.16l-1.42 1.42-1.79-1.8 1.41-1.41 1.8 1.79zM19.16 17.24l1.42-1.42 1.79 1.8-1.41 1.41-1.8-1.79zM12 8a4 4 0 100 8 4 4 0 000-8z"/>
-    </svg>
-  </button>
-
-  <div class="wrap">
-    <div class="card" id="card">
-      <!-- Step 1 -->
-      <section class="step active" id="step-1">
-        <h1 class="title">Smriti, ready for a tiny adventure? 🌌</h1>
-        <p class="muted">No pressure. Just a lil interactive thing I made. If you smile even once, mission accomplished.</p>
-        <div class="center">
-          <button class="btn primary" id="beginBtn">Begin</button>
-          <button class="btn ghost" id="peekBtn">Peek a hint</button>
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <div class="container">
+        <div class="header">
+            <h1>For Someone <span class="heart">Special</span></h1>
+            <p>This is for you, Smriti</p>
         </div>
-        <p class="tiny" id="hint" style="opacity:.0; transition:opacity .3s ease;">hint: collect enough stardust ✨</p>
-      </section>
-
-      <!-- Step 2: three playful prompts -->
-      <section class="step" id="step-2">
-        <h2 class="title">Level 1 · Warm‑up</h2>
-        <p class="muted">Pick what sounds most like <em>us</em>. Every pick adds stardust to unlock the surprise.</p>
-        <div class="grid">
-          <article class="option" data-points="12">The way we roast each other but still care 🫶</article>
-          <article class="option" data-points="12">Your random rants that secretly make my day 😌</article>
-          <article class="option" data-points="12">Those chaotic memes at 2AM 🙈</article>
-          <article class="option" data-points="12">That one memory we both keep revisiting 🤐</article>
+        
+        <div id="introMessage" class="message">
+            <p>I created this little interactive page just for you...</p>
+            <p>There's something I've been wanting to say for a while now.</p>
         </div>
-        <div class="progress"><i id="bar"></i></div>
-        <div class="pill"><span id="pct">0%</span> stardust</div>
-        <div class="center">
-          <button class="btn" id="nextToHold" disabled>Next</button>
+        
+        <div id="progressContainer" class="progress-container hidden">
+            <div class="progress-bar" id="progressBar"></div>
         </div>
-      </section>
-
-      <!-- Step 3: hold to charge -->
-      <section class="step" id="step-3">
-        <h2 class="title">Level 2 · Hold for 3 seconds</h2>
-        <p class="muted">Keep holding to charge the portal. If you let go… we try again 🙂</p>
-        <div class="center">
-          <button class="btn hold-btn" id="holdBtn"><span>Hold to charge</span><i class="hold-fill" id="holdFill"></i></button>
+        
+        <button id="startBtn">Click to Begin This Journey</button>
+        
+        <div id="interactiveSection" class="hidden">
+            <p>Before I tell you what's in my heart, let's take a quick journey...</p>
+            <button id="memoryBtn"><i class="fas fa-heart"></i> Remember our first meeting?</button>
+            <button id="laughBtn"><i class="fas fa-laugh"></i> Your laughter is my favorite sound</button>
+            <button id="continueBtn" class="hidden">Continue to My Heart</button>
+            
+            <div id="memoryMessage" class="memory-container">
+                <h3><i class="fas fa-heart"></i> Our First Meeting</h3>
+                <p>I'll never forget the first time we met. It was a cloudy afternoon, and you walked in with that bright smile that lit up the entire room. I knew from that moment that you were someone special.</p>
+            </div>
+            
+            <div id="laughMessage" class="memory-container">
+                <h3><i class="fas fa-laugh"></i> Your Beautiful Laugh</h3>
+                <p>Your laughter is like music to my ears. It's infectious and brightens even my darkest days. I find myself doing silly things just to hear you laugh, and it's always worth it.</p>
+            </div>
         </div>
-        <div class="progress"><i id="bar2"></i></div>
-        <div class="pill"><span id="pct2">0%</span> charged</div>
-      </section>
-
-      <!-- Step 4: catch the stars -->
-      <section class="step" id="step-4">
-        <h2 class="title">Final Level · Catch 10 fireflies ⭐</h2>
-        <p class="muted">Tap/click the floating lights. Each one adds a little magic.</p>
-        <div class="progress"><i id="bar3"></i></div>
-        <div class="pill"><span id="pct3">0/10</span> fireflies</div>
-        <div class="center"><button class="btn" id="revealBtn" disabled>Reveal</button></div>
-      </section>
-
-      <!-- Step 5: final message -->
-      <section class="step final" id="step-5">
-        <h2 class="title">💌</h2>
-        <p class="muted">Read this at your pace…</p>
-        <div id="tw" class="typewriter" style="max-width: 100%; font-size: clamp(16px, 2.2vw, 20px);"></div>
-        <div class="center" style="margin-top:18px">
-          <a class="btn primary" id="waBtn" href="https://wa.me/" target="_blank" rel="noopener">Reply on WhatsApp</a>
-          <button class="btn ghost" id="replay">Replay</button>
+        
+        <div id="finalContainer" class="final-container">
+            <div class="photo-container" id="finalPhotoContainer">
+                <img src="https://i.ibb.co/v4Sp8918/s1.jpg" alt="Our Memory" class="photo">
+            </div>
+            
+            <div id="finalMessage" class="final-message">
+                <p>Heyy...this is Adarsh orr your Gadha and whatsoever....</p>
+                <p>I know this is kinda out of the blue...but I think it's now or never....</p>
+                <p>I think this is the time....</p>
+                <div id="loveMessage" class="love-line"></div>
+                <p>I can't hold it anymore and also I don't wanna keep any regrets...</p>
+                <p>Let me know your response on whatsapp</p>
+                <div class="signature">- Forever Yours, Adarsh</div>
+            </div>
         </div>
-      </section>
     </div>
-  </div>
 
-  <script>
-    // ===== Utility: tiny typewriter =====
-    function typeText(el, text, speed = 22){
-      el.textContent = "";
-      let i=0; const timer = setInterval(()=>{
-        el.textContent = text.slice(0, i++);
-        if(i>text.length){clearInterval(timer); el.style.borderRight='0'}
-      }, speed);
-    }
+    <div class="music-control hidden" id="musicControl">
+        <i class="fas fa-pause"></i>
+    </div>
 
-    // ===== Theme toggle =====
-    const toggle = document.getElementById('modeToggle');
-    let light = false;
-    toggle.addEventListener('click', ()=>{
-      light = !light;
-      document.documentElement.style.setProperty('--bg', light ? '#f5f7fb' : '#0b0f14');
-      document.documentElement.style.setProperty('--fg', light ? '#0c1220' : '#eaf2ff');
-      document.documentElement.style.setProperty('--muted', light ? '#4b5563' : '#9fb3c8');
-      document.documentElement.style.setProperty('--card', light ? '#ffffff' : '#10151d');
-      document.documentElement.style.setProperty('--card-2', light ? '#fafafa' : '#0e141b');
-      document.body.style.background = light ? 'radial-gradient(1200px 800px at 70% -10%, #dfe7ff 2%, transparent 60%), #f5f7fb' : 'radial-gradient(1200px 800px at 70% -10%, #162035 2%, transparent 60%), #0b0f14';
-    });
+    <audio id="bgMusic" loop>
+        <!-- Replace with your actual music file -->
+        <source src="1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-    // ===== Starfield background =====
-    const starCanvas = document.querySelector('.stars');
-    const heartCanvas = document.querySelector('.hearts');
-    const sctx = starCanvas.getContext('2d');
-    const hctx = heartCanvas.getContext('2d');
-    let W, H; let stars=[]; let hearts=[]; let fireflies=[];
-
-    function resize(){W=starCanvas.width=heartCanvas.width=innerWidth; H=starCanvas.height=heartCanvas.height=innerHeight}
-    addEventListener('resize', resize); resize();
-
-    function initStars(){
-      stars = Array.from({length: Math.min(300, Math.floor((W*H)/8000))}, ()=>({
-        x: Math.random()*W, y: Math.random()*H, z: Math.random()*0.6+0.4, tw: Math.random()*100
-      }));
-    }
-    initStars();
-
-    function drawStars(t){
-      sctx.clearRect(0,0,W,H);
-      for(const s of stars){
-        s.tw += 0.02; const a = 0.6 + Math.sin(s.tw)*0.35;
-        sctx.globalAlpha = a; sctx.fillStyle = '#c7e2ff';
-        sctx.fillRect(s.x, s.y, s.z*1.2, s.z*1.2);
-      }
-    }
-
-    // Hearts drift
-    function spawnHeart(x,y){
-      hearts.push({x,y, r: 6+Math.random()*10, a:1, vx:(Math.random()-.5)*0.6, vy:-1.2-Math.random()*0.8, rot:Math.random()*Math.PI});
-    }
-    function drawHearts(){
-      hctx.clearRect(0,0,W,H); hctx.save();
-      for(let i=hearts.length-1;i>=0;i--){
-        const h=hearts[i]; h.x+=h.vx; h.y+=h.vy; h.a-=0.008; h.rot+=0.02;
-        if(h.a<=0 || h.y<-20) {hearts.splice(i,1); continue}
-        hctx.globalAlpha = Math.max(0,h.a);
-        hctx.translate(h.x,h.y); hctx.rotate(h.rot); hctx.fillStyle= 'rgba(255,77,122,0.9)';
-        heartPath(hctx, h.r); hctx.fill(); hctx.setTransform(1,0,0,1,0,0);
-      }
-      hctx.restore();
-    }
-    function heartPath(ctx, r){
-      ctx.beginPath();
-      const d=r/1.6; ctx.moveTo(0, d);
-      ctx.bezierCurveTo(0, d-1.5*r, -r, d-0.5*r, -r, -d/3);
-      ctx.bezierCurveTo(-r, -r, 0, -r*0.6, 0, -d/6);
-      ctx.bezierCurveTo(0, -r*0.6, r, -r, r, -d/3);
-      ctx.bezierCurveTo(r, d-0.5*r, 0, d-1.5*r, 0, d);
-      ctx.closePath();
-    }
-
-    // Fireflies for Level 4
-    function spawnFirefly(){
-      fireflies.push({x:Math.random()*W, y:Math.random()*H*.6 + H*.2, r:6+Math.random()*4, t:Math.random()*Math.PI*2, s:0.8+Math.random()*1.2});
-    }
-
-    // Tiny audio pings (WebAudio)
-    const AC = window.AudioContext || window.webkitAudioContext; const audioCtx = new AC();
-    function ping(){
-      const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-      o.type='sine'; o.frequency.value = 600 + Math.random()*200; g.gain.value=0.0001; g.gain.linearRampToValueAtTime(0.08, audioCtx.currentTime+0.01);
-      g.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime+0.22);
-      o.connect(g).connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime+0.25);
-    }
-    function softChord(){
-      const now = audioCtx.currentTime; [392,494,587].forEach((f,i)=>{ // G B D
-        const o = audioCtx.createOscillator(); const g = audioCtx.createGain();
-        o.type='sine'; o.frequency.value=f; g.gain.value=0.0001; g.gain.linearRampToValueAtTime(0.04, now+0.05*i);
-        g.gain.exponentialRampToValueAtTime(0.00001, now+0.9+i*0.02); o.connect(g).connect(audioCtx.destination); o.start(now); o.stop(now+1.0+i*0.02);
-      });
-    }
-
-    // Main animation loop
-    function loop(t){
-      drawStars(t); drawHearts();
-      // fireflies draw when on level 4
-      if(currentStep===4){
-        hctx.save();
-        for(const f of fireflies){
-          f.t += 0.02 * f.s; f.x += Math.cos(f.t)*0.4; f.y += Math.sin(f.t*0.7)*0.3;
-          hctx.globalAlpha = 0.5 + Math.sin(f.t*3)*0.5; hctx.beginPath();
-          hctx.arc(f.x,f.y,f.r,0,Math.PI*2); hctx.fillStyle = '#ffd166'; hctx.shadowBlur=20; hctx.shadowColor='#ffd166'; hctx.fill(); hctx.shadowBlur=0;
-        }
-        hctx.restore();
-      }
-      requestAnimationFrame(loop);
-    }
-    requestAnimationFrame(loop);
-
-    // ===== Interactions / Steps =====
-    const steps = [null,
-      document.getElementById('step-1'),
-      document.getElementById('step-2'),
-      document.getElementById('step-3'),
-      document.getElementById('step-4'),
-      document.getElementById('step-5')
-    ];
-    let currentStep = 1;
-    function go(n){ steps[currentStep].classList.remove('active'); steps[n].classList.add('active'); currentStep=n; }
-
-    // Step 1
-    document.getElementById('beginBtn').addEventListener('click', ()=>{ go(2); softChord(); });
-    document.getElementById('peekBtn').addEventListener('click', ()=>{ document.getElementById('hint').style.opacity=1; spawnHeart(innerWidth-60,60); ping(); });
-
-    // Step 2
-    const bar = document.getElementById('bar'); const pct = document.getElementById('pct'); const nextBtn = document.getElementById('nextToHold');
-    let score=0;
-    document.querySelectorAll('.option').forEach(opt=>{
-      opt.addEventListener('click', ()=>{
-        const pts = Number(opt.dataset.points||'10'); score = Math.min(100, score + pts);
-        bar.style.width = score + '%'; pct.textContent = Math.round(score)+'%';
-        opt.style.borderColor = '#475569'; spawnHeart(opt.getBoundingClientRect().left+opt.offsetWidth/2, opt.getBoundingClientRect().top);
-        ping(); if(score>=48) nextBtn.disabled=false;
-      });
-    });
-    nextBtn.addEventListener('click', ()=>{ go(3); softChord(); });
-
-    // Step 3: hold to charge 3s
-    const holdBtn = document.getElementById('holdBtn'); const holdFill = document.getElementById('holdFill');
-    const bar2 = document.getElementById('bar2'); const pct2 = document.getElementById('pct2');
-    let holding=false, holdTimer=null, holdProgress=0;
-
-    function holdLoop(){ if(!holding) return; holdProgress = Math.min(100, holdProgress+1.7); holdFill.style.width=holdProgress+'%'; bar2.style.width=holdProgress+'%'; pct2.textContent=Math.round(holdProgress)+'%';
-      if(holdProgress>=100){ holding=false; go(4); softChord(); for(let i=0;i<10;i++) spawnFirefly(); return; }
-      setTimeout(holdLoop, 50);
-    }
-    const startHold = ()=>{ if(holding) return; holding=true; holdProgress=0; holdLoop(); ping(); };
-    const endHold = ()=>{ if(!holding) return; holding=false; holdFill.style.width='0%'; bar2.style.width='0%'; pct2.textContent='0%'; };
-
-    holdBtn.addEventListener('mousedown', startHold);
-    holdBtn.addEventListener('touchstart', (e)=>{ e.preventDefault(); startHold(); }, {passive:false});
-    ['mouseup','mouseleave','touchend','touchcancel'].forEach(ev=> holdBtn.addEventListener(ev, endHold));
-
-    // Step 4: catch 10 fireflies
-    const bar3 = document.getElementById('bar3'); const pct3 = document.getElementById('pct3'); const revealBtn = document.getElementById('revealBtn');
-    let caught=0;
-    heartCanvas.addEventListener('click', e=>{
-      if(currentStep!==4) return;
-      const rect = heartCanvas.getBoundingClientRect(); const x=e.clientX-rect.left, y=e.clientY-rect.top;
-      for(let i=fireflies.length-1;i>=0;i--){ const f=fireflies[i]; const dx=f.x-x, dy=f.y-y; if(dx*dx+dy*dy < (f.r+12)*(f.r+12)){
-          fireflies.splice(i,1); caught++; for(let j=0;j<6;j++) spawnHeart(x,y); ping();
-          bar3.style.width = (caught*10)+'%'; pct3.textContent=caught+'/10'; if(caught>=10){ revealBtn.disabled=false; }
-          break;
-      }}
-      // keep population
-      if(fireflies.length<8) spawnFirefly();
-    });
-    revealBtn.addEventListener('click', ()=>{ go(5); confetti(160); softChord(); finalType(); });
-
-    // Confetti
-    function confetti(n=120){
-      for(let i=0;i<n;i++){
-        setTimeout(()=>{
-          spawnHeart(Math.random()*W, H-10);
-        }, i*6);
-      }
-    }
-
-    // Final typewriter content (exact user-provided text)
-    function finalType(){
-      const msg = "Heyy...this is Adarsh orr your Gadha and whatsoever....i know this is kinda out of the blue...but i think it's now or never....i think this is the time....I love you Smriti....i can,t hold it anymore and also i don't wanna keep any regrets...let me know your response on whatsapp";
-      typeText(document.getElementById('tw'), msg, 20);
-    }
-
-    // Replay
-    document.getElementById('replay').addEventListener('click', ()=>{ location.reload(); });
-
-    // Accessibility: enable keyboard capture on stars
-    addEventListener('keydown', (e)=>{ if(e.key==='Enter' && currentStep===4){ // simulate catch
-      const x = Math.random()*W, y=Math.random()*H*0.6+H*0.2; for(let j=0;j<6;j++) spawnHeart(x,y); caught++; bar3.style.width=(caught*10)+'%'; pct3.textContent=caught+'/10'; if(caught>=10) revealBtn.disabled=false; ping(); }
-    });
-
-    // First welcome hearts
-    for(let i=0;i<24;i++) setTimeout(()=>spawnHeart(Math.random()*W, Math.random()*H), i*60);
-  </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const startBtn = document.getElementById('startBtn');
+            const memoryBtn = document.getElementById('memoryBtn');
+            const laughBtn = document.getElementById('laughBtn');
+            const continueBtn = document.getElementById('continueBtn');
+            const introMessage = document.getElementById('introMessage');
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const interactiveSection = document.getElementById('interactiveSection');
+            const finalContainer = document.getElementById('finalContainer');
+            const finalPhotoContainer = document.getElementById('finalPhotoContainer');
+            const memoryMessage = document.getElementById('memoryMessage');
+            const laughMessage = document.getElementById('laughMessage');
+            const loveMessage = document.getElementById('loveMessage');
+            const heartsContainer = document.getElementById('heartsContainer');
+            const musicControl = document.getElementById('musicControl');
+            const bgMusic = document.getElementById('bgMusic');
+            
+            // Typewriter function
+            function typeWriter(text, element, speed = 100) {
+                let i = 0;
+                element.innerHTML = '';
+                
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    } else {
+                        // Add blinking cursor after text is complete
+                        const cursor = document.createElement('span');
+                        cursor.classList.add('cursor');
+                        element.appendChild(cursor);
+                        
+                        // Remove cursor after 2 seconds
+                        setTimeout(() => {
+                            cursor.remove();
+                        }, 2000);
+                    }
+                }
+                
+                type();
+            }
+            
+            // Play music function
+            function playMusic() {
+                bgMusic.play().then(() => {
+                    bgMusic.volume = 0.7;
+                    musicControl.classList.remove('hidden');
+                }).catch(error => {
+                    console.log('Audio play failed:', error);
+                    // Show music control anyway for user interaction
+                    musicControl.classList.remove('hidden');
+                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
+                });
+            }
+            
+            // Create floating hearts
+            function createHearts() {
+                setInterval(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart-shape');
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                    heartsContainer.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 6000);
+                }, 300);
+            }
+            
+            startBtn.addEventListener('click', function() {
+                // Fade in the intro message
+                introMessage.style.opacity = 1;
+                introMessage.style.transform = 'translateY(0)';
+                
+                // Hide start button and show progress container
+                startBtn.classList.add('hidden');
+                progressContainer.classList.remove('hidden');
+                
+                // Animate progress bar
+                let width = 0;
+                const interval = setInterval(() => {
+                    if (width >= 100) {
+                        clearInterval(interval);
+                        showInteractiveSection();
+                    } else {
+                        width++;
+                        progressBar.style.width = width + '%';
+                    }
+                }, 30);
+            });
+            
+            function showInteractiveSection() {
+                progressContainer.classList.add('hidden');
+                interactiveSection.classList.remove('hidden');
+                createHearts();
+            }
+            
+            memoryBtn.addEventListener('click', function() {
+                memoryMessage.style.display = 'block';
+                this.classList.add('clicked');
+                this.style.opacity = '0.7';
+                checkButtonsClicked();
+            });
+            
+            laughBtn.addEventListener('click', function() {
+                laughMessage.style.display = 'block';
+                this.classList.add('clicked');
+                this.style.opacity = '0.7';
+                checkButtonsClicked();
+            });
+            
+            function checkButtonsClicked() {
+                if (memoryBtn.classList.contains('clicked') && laughBtn.classList.contains('clicked')) {
+                    continueBtn.classList.remove('hidden');
+                }
+            }
+            
+            continueBtn.addEventListener('click', function() {
+                interactiveSection.classList.add('hidden');
+                finalContainer.style.display = 'flex';
+                finalPhotoContainer.style.display = 'block';
+                
+                // Typewriter effect for the love message
+                setTimeout(() => {
+                    typeWriter('I love you Smriti....', loveMessage, 120);
+                }, 1000);
+                
+                // Play music when the final message appears
+                setTimeout(() => {
+                    playMusic();
+                }, 1500);
+                
+                // Create more hearts for the finale
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.classList.add('heart-shape');
+                        heart.innerHTML = '❤';
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                        heartsContainer.appendChild(heart);
+                        
+                        setTimeout(() => {
+                            heart.remove();
+                        }, 6000);
+                    }, i * 100);
+                }
+            });
+            
+            // Music control
+            let musicPlaying = true;
+            musicControl.addEventListener('click', function() {
+                if (musicPlaying) {
+                    bgMusic.pause();
+                    musicControl.innerHTML = '<i class="fas fa-play"></i>';
+                } else {
+                    bgMusic.play();
+                    musicControl.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                musicPlaying = !musicPlaying;
+            });
+        });
+    </script>
 </body>
 </html>
