@@ -108,23 +108,19 @@
         
         .final-container {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
             gap: 30px;
             margin-top: 25px;
             display: none;
         }
         
-        .final-message {
-            background: #fff;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #ff6b6b;
-            text-align: left;
+        .final-text-container {
             flex: 1;
+            text-align: left;
+            padding-left: 20px;
         }
-        
+
         .memory-container {
             display: none;
             background: rgba(255, 255, 255, 0.9);
@@ -228,6 +224,12 @@
         @media (max-width: 768px) {
             .final-container {
                 flex-direction: column;
+                align-items: center;
+            }
+            
+            .final-text-container {
+                padding-left: 0;
+                margin-top: 20px;
             }
             
             .photo-container {
@@ -291,8 +293,8 @@
         <div id="finalContainer" class="final-container">
             <div class="photo-container" id="finalPhotoContainer">
                 <img src="https://i.ibb.co/v4Sp8918/s1.jpg" alt="Our Memory" class="photo">
-           
             </div>
+            <div id="finalTextContainer" class="final-text-container"></div>
         </div>
 
     <div class="music-control hidden" id="musicControl">
@@ -319,10 +321,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const finalPhotoContainer = document.getElementById('finalPhotoContainer');
     const memoryMessage = document.getElementById('memoryMessage');
     const laughMessage = document.getElementById('laughMessage');
-    const loveMessage = document.getElementById('loveMessage');
     const heartsContainer = document.getElementById('heartsContainer');
     const musicControl = document.getElementById('musicControl');
     const bgMusic = document.getElementById('bgMusic');
+    const finalTextContainer = document.getElementById('finalTextContainer');
 
     // Typewriter function
     function typeWriter(text, element, speed = 50, callback) {
@@ -407,38 +409,37 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
- continueBtn.addEventListener('click', function() {
-    interactiveSection.classList.add('hidden');
-    finalContainer.style.display = 'flex';
-    finalPhotoContainer.style.display = 'block';
-    playMusic();
-    createHearts();
+    continueBtn.addEventListener('click', function() {
+        interactiveSection.classList.add('hidden');
+        finalContainer.style.display = 'flex';
+        finalPhotoContainer.style.display = 'block';
+        playMusic();
+        createHearts();
 
-    const finalParagraphs = [
-        "Heyy...this is Adarsh orr your Gadha and whatsoever....",
-        "I know this is kinda out of the blue...but I think it's now or never....",
-        "I think this is the time....",
-        "I love you Smriti....",
-        "I can't hold it anymore and also I don't wanna keep any regrets...",
-        "Let me know your response on whatsapp"
-    ];
+        const finalParagraphs = [
+            "Heyy...this is Adarsh orr your Gadha and whatsoever....",
+            "I know this is kinda out of the blue...but I think it's now or never....",
+            "I think this is the time....",
+            "I love you Smriti....",
+            "I can't hold it anymore and also I don't wanna keep any regrets...",
+            "Let me know your response on whatsapp"
+        ];
 
-    let idx = 0;
+        let idx = 0;
 
-    function typeNext() {
-        if (idx < finalParagraphs.length) {
-            const p = document.createElement('p');
-            finalContainer.appendChild(p);  // append to finalContainer instead of loveMessage
-            typeWriter(finalParagraphs[idx], p, 80, () => {
-                idx++;
-                typeNext();
-            });
+        function typeNext() {
+            if (idx < finalParagraphs.length) {
+                const p = document.createElement('p');
+                finalTextContainer.appendChild(p);  // append to text container only
+                typeWriter(finalParagraphs[idx], p, 80, () => {
+                    idx++;
+                    typeNext();
+                });
+            }
         }
-    }
 
-    typeNext();
-});
-
+        typeNext();
+    });
 
     // Music control
     let musicPlaying = true;
