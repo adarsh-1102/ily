@@ -62,9 +62,26 @@
     .music-control{position:fixed;bottom:20px;right:20px;background:#6a0dad;color:white;width:55px;height:55px;border-radius:50%;display:flex;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 6px 15px rgba(0,0,0,0.3);z-index:100;font-size:22px;transition:transform 0.3s;}
     .music-control:hover{transform:scale(1.1);}
     .hidden {display: none !important;}
+    /* Fireworks */
+    canvas#fireworksCanvas {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 999;
+    }
+    /* Responsive adjustments */
+    @media(max-width:768px){
+        .container{padding:20px;}
+        h1{font-size:26px;}
+        .photo-container{width:200px;height:200px;}
+        .final-text-container{font-size:16px;}
+        button{padding:12px 24px;font-size:16px;}
+    }
 </style>
 </head>
 <body>
+<canvas id="fireworksCanvas" class="hidden"></canvas>
 <div class="hearts-container" id="heartsContainer"></div>
 
 <div class="container">
@@ -137,9 +154,66 @@ document.addEventListener('DOMContentLoaded',()=>{
     const bgMusic=document.getElementById('bgMusic');
     const finalTextContainer=document.getElementById('finalTextContainer');
     const yesnoContainer=document.getElementById('yesnoContainer');
+    const fireworksCanvas=document.getElementById('fireworksCanvas');
+    const ctx=fireworksCanvas.getContext('2d');
 
-    const formUrl="https://docs.google.com/forms/d/e/1FAIpQLScma3_cVhYuRY3f56IpF1wmEWWXsfmCKwO5a0Z735PZpUnCKQ/formResponse";
-    const fieldEntry="entry.248480597";
+    fireworksCanvas.width=window.innerWidth;
+    fireworksCanvas.height=window.innerHeight;
+    window.addEventListener('resize',()=>{
+        fireworksCanvas.width=window.innerWidth;
+        fireworksCanvas.height=window.innerHeight;
+    });
+
+    // Fireworks animation
+    function Firework(x,y){
+        this.x=x;this.y=y;
+        this.particles=[];
+        for(let i=0;i<100;i++){
+            this.particles.push({
+                x:x,y:y,
+                angle:Math.random()*2*Math.PI,
+                speed:Math.random()*5+2,
+                radius:Math.random()*3+1,
+                alpha:1
+            });
+        }
+    }
+    Firework.prototype.update=function(){
+        this.particles.forEach(p=>{
+            p.x+=Math.cos(p.angle)*p.speed;
+            p.y+=Math.sin(p.angle)*p.speed;
+            p.alpha-=0.01;
+        });
+    };
+    Firework.prototype.draw=function(){
+        this.particles.forEach(p=>{
+            ctx.beginPath();
+            ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
+            ctx.fillStyle=`rgba(255, ${Math.floor(Math.random()*255)}, ${Math.floor(Math.random()*255)}, ${p.alpha})`;
+            ctx.fill();
+        });
+    };
+
+    let fireworks=[];
+    function animateFireworks(){
+        ctx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+        fireworks.forEach((f,i)=>{
+            f.update();
+            f.draw();
+        });
+        fireworks=fireworks.filter(f=>f.particles[0].alpha>0);
+        requestAnimationFrame(animateFireworks);
+    }
+
+    function launchFirework(){
+        fireworks.push(new Firework(Math.random()*fireworksCanvas.width,Math.random()*fireworksCanvas.height/2));
+    }
+
+    function showFireworks(){
+        fireworksCanvas.classList.remove('hidden');
+        setInterval(launchFirework,500);
+        animateFireworks();
+    }
 
     function typeWriterHTMLSafe(htmlText,element,speed=50,callback){
         let temp=document.createElement('div');temp.innerHTML=htmlText;
@@ -234,15 +308,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 
     window.sendResponse=function(answer){
-        fetch(formUrl,{
-            method:"POST",
-            mode:"no-cors",
-            headers:{"Content-Type":"application/x-www-form-urlencoded"},
-            body:`${fieldEntry}=${encodeURIComponent(answer)}`
-        }).then(()=>{
-            if(answer==="Yes"){alert("Yay! You made me so happy ❤️");}
-            else{alert("Ouch 😅 but thanks for being honest.");}
-        });
+        if(answer==="Yes"){
+            yesnoContainer.style.display="none";
+            showFireworks();
+        } else {
+            const p=document.createElement("p");
+            p.style.color="#ff4c4c";
+            p.style.marginTop="20px";
+            p.innerText="Okayy.. I respect your decision.. maybe I am not your type 😅";
+            finalTextContainer.appendChild(p);
+            yesnoContainer.style.display="none";
+        }
     }
 });
 </script>
